@@ -30,8 +30,7 @@ public class GithubOAuthService extends OAuthServiceDeractor{
 	Response response = request.send();
 	OAuthUser oAuthUser = new OAuthUser();
 	oAuthUser.setOAuthType(getoAuthType());
-	JsonParser jsonParser = JsonParserFactory.getJsonParser();
-	Map<String, Object> result = jsonParser.parseMap(response.getBody());
+	Map<String, Object> result = JsonParserFactory.getJsonParser().parseMap(response.getBody());
 	oAuthUser.setOAuthId(String.valueOf(result.get("id")));
 	oAuthUser.setUser(new User());
 	oAuthUser.getUser().setUsername((String) result.get("login"));

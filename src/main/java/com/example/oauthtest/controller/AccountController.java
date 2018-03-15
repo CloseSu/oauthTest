@@ -19,11 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 public class AccountController {
 
     @Autowired
-    OAuthServices oAuthServices;
+    private OAuthServices oAuthServices;
     @Autowired
-    OauthUserRepository oauthUserRepository;
+    private OauthUserRepository oauthUserRepository;
     @Autowired
-    UserRepository userRepository;
+    private UserRepository userRepository;
 
     @RequestMapping(value = {"", "/login"}, method= RequestMethod.GET)
     public String showLogin(Model model){
