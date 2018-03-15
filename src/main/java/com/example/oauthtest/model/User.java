@@ -18,6 +18,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
+    @Column(name = "email")
+    private String email;
+
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name="userId")
     private List<OauthTypeData> typeDataList;

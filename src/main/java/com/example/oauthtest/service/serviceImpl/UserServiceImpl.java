@@ -35,4 +35,15 @@ public class UserServiceImpl implements UserServiceI{
 	    oauthTypeDataRepository.save(oauthTypeData);
 	}
     }
+
+    @Override
+    public String save(User user) {
+	User userFromDb = userRepository.findByUsername(user.getUsername());
+	if (userFromDb == null){
+	    userRepository.save(user);
+	    return "Register with website";
+	}else {
+	    return "You have already registered !";
+	}
+    }
 }
