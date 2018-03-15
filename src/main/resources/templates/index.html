@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8"></meta>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="css/docs.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-social.css" />
     <title>Insert title here</title>
 </head>
 <body>
-<a th:each="oAuthService:${oAuthServices}" th:href="@{${oAuthService.authorizationUrl}}" href="#"
-   th:text="${oAuthService.oAuthType}">github</a>
+<div class="col-sm-2">
+    <a class="btn btn-block btn-social btn-github" >
+        <span class="fa fa-github"></span> Sign in with GitHub
+    </a>
+</div>
+
+    <a th:each="oAuthService:${oAuthServices}" th:href="@{${oAuthService.authorizationUrl}}" href="#"
+       th:text="${oAuthService.oAuthType}">github</a>
 </body>
 </html>
