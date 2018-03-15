@@ -8,3 +8,5 @@ oAuth:
     clientSecret : 0484e4436bda5a391d519637795d631e4fe118c9
     userAuthorizationUri: https://github.com/login/oauth/authorize?
     accessTokenUri: https://github.com/login/oauth/access_token?
+    resource:
+        userInfoUri: https://api.github.com/user

@@ -10,10 +10,12 @@ import org.scribe.model.Response;
 import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
+import org.springframework.beans.factory.annotation.Value;
 
 public class GithubOAuthService extends OAuthServiceDeractor{
 
-    private static final String PROTECTED_RESOURCE_URL = "https://api.github.com/user";
+    @Value("${oAuth.github.resource.userInfoUri}")
+    private String resourceUserInfoUri;
 
     public GithubOAuthService(OAuthService oAuthService) {
 	super(oAuthService, OAuthTypes.GITHUB);
@@ -21,7 +23,7 @@ public class GithubOAuthService extends OAuthServiceDeractor{
 
     @Override
     public OAuthUser getOAuthUser(Token accessToken) {
-	OAuthRequest request = new OAuthRequest(Verb.GET, PROTECTED_RESOURCE_URL);
+	OAuthRequest request = new OAuthRequest(Verb.GET, resourceUserInfoUri);
 	this.signRequest(accessToken, request);
 	Response response = request.send();
 	OAuthUser oAuthUser = new OAuthUser();

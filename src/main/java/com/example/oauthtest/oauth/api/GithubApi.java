@@ -15,9 +15,9 @@ public class GithubApi extends DefaultApi20 {
 
     @Override
     public String getAuthorizationUrl(OAuthConfig config) {
-        final String authorise_url = userAuthorizationUri + "client_id=%s&redirect_uri=%s";
+        String authorise_url = userAuthorizationUri + "client_id=%s&redirect_uri=%s";
 	if (config.hasScope()){
-	    final String scope_authorise_url = authorise_url + "&scope=%s";
+	    String scope_authorise_url = authorise_url + "&scope=%s";
 	    return String.format(scope_authorise_url,
 				 config.getApiKey(),
 				 OAuthEncoder.encode(config.getCallback()),

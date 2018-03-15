@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class GithubOAuthConfig {
 
-    private final String CALLBACK_URL = "%s/oauth/%s/callback";
+    private static final String CALLBACK_URL = "%s/oauth/%s/callback";
 
     @Value("${oAuth.github.clientId}")
     private String githubClientId;
