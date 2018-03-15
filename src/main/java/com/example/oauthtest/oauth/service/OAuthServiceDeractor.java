@@ -1,10 +1,9 @@
 package com.example.oauthtest.oauth.service;
 
-import com.example.oauthtest.model.OAuthUser;
+import com.example.oauthtest.model.OauthTypeData;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
-import org.scribe.oauth.OAuthService;
 import org.scribe.oauth.OAuthService;
 
 public abstract  class OAuthServiceDeractor implements OAuthService {
@@ -52,5 +51,5 @@ public abstract  class OAuthServiceDeractor implements OAuthService {
 	return authorizationUrl;
     }
 
-    public abstract OAuthUser getOAuthUser(Token accessToken);
+    public abstract OauthTypeData getOAuthUser(Token accessToken);
 }

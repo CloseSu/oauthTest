@@ -1,8 +1,8 @@
 package com.example.oauthtest.oauth.service;
 
 import com.example.oauthtest.config.OAuthTypes;
-import com.example.oauthtest.model.OAuthUser;
-import com.example.oauthtest.model.User;
+import com.example.oauthtest.model.OauthTypeData;
+import lombok.extern.slf4j.Slf4j;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
 import org.scribe.model.Token;
@@ -13,6 +13,7 @@ import org.springframework.boot.json.JsonParserFactory;
 
 import java.util.Map;
 
+@Slf4j
 public class GithubOAuthService extends OAuthServiceDeractor{
 
     @Value("${oAuth.github.resource.userInfoUri}")
@@ -23,16 +24,17 @@ public class GithubOAuthService extends OAuthServiceDeractor{
     }
 
     @Override
-    public OAuthUser getOAuthUser(Token accessToken) {
+    public OauthTypeData getOAuthUser(Token accessToken) {
 	OAuthRequest request = new OAuthRequest(Verb.GET, resourceUserInfoUri);
 	this.signRequest(accessToken, request);
 	Response response = request.send();
-	OAuthUser oAuthUser = new OAuthUser();
-	oAuthUser.setOAuthType(getoAuthType());
+	log.info(response.getBody().toString());
+	OauthTypeData oauthTypeData = new OauthTypeData();
+	oauthTypeData.setOAuthType(getoAuthType());
 	Map<String, Object> result = JsonParserFactory.getJsonParser().parseMap(response.getBody());
-	oAuthUser.setOAuthId(String.valueOf(result.get("id")));
-	oAuthUser.setUser(new User());
-	oAuthUser.getUser().setUsername((String) result.get("login"));
-	return oAuthUser;
+	oauthTypeData.setOAuthId(String.valueOf(result.get("id")));
+	oauthTypeData.setUsername((String) result.get("login"));
+
+	return oauthTypeData;
     }
 }

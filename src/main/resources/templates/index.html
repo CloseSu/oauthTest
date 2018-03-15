@@ -9,13 +9,25 @@
     <title>Insert title here</title>
 </head>
 <body>
-<div class="col-sm-2">
-    <a class="btn btn-block btn-social btn-github" >
-        <span class="fa fa-github"></span> Sign in with GitHub
-    </a>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3" >
+            <a th:each="oAuthService:${oAuthServices}"
+               th:href="@{${oAuthService.authorizationUrl}}"
+               href="#"
+               class="btn btn-block btn-social "
+               th:classappend="${'btn-' + oAuthService.oAuthType}" >
+                <span class="fa "
+                      th:classappend="${'fa-' + oAuthService.oAuthType}">
+                </span> Sign in with GitHub
+            </a>
+        </div>
+    </div>
 </div>
-
-    <a th:each="oAuthService:${oAuthServices}" th:href="@{${oAuthService.authorizationUrl}}" href="#"
-       th:text="${oAuthService.oAuthType}">github</a>
+<!--<form action="/register" method="POST">-->
+    <!--<input type="text" name="username" th:value="${oAuthInfo.user.username}"></input>-->
+    <!--<input type="password" name="password" ></input>-->
+    <!--<input type="submit" value="提交"></input>-->
+<!--</form>-->
 </body>
 </html>
