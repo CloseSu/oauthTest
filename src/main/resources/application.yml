@@ -10,3 +10,13 @@ oAuth:
     accessTokenUri: https://github.com/login/oauth/access_token?
     resource:
         userInfoUri: https://api.github.com/user
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb
+    username: root
+    password:

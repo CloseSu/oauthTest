@@ -9,7 +9,6 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.json.JsonParser;
 import org.springframework.boot.json.JsonParserFactory;
 
 import java.util.Map;

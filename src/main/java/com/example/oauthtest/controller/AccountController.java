@@ -33,8 +33,8 @@ public class AccountController {
 
     @RequestMapping(value = "/oauth/{type}/callback", method=RequestMethod.GET)
     public String clallback(@RequestParam(value = "code", required = true) String code,
-			   @PathVariable(value = "type") String type,
-			   HttpServletRequest request, Model model){
+			    @PathVariable(value = "type") String type,
+			    HttpServletRequest request, Model model){
 	OAuthServiceDeractor oAuthService = oAuthServices.getOAuthService(type);
 	Token accessToken = oAuthService.getAccessToken(null, new Verifier(code));
 	OAuthUser oAuthInfo = oAuthService.getOAuthUser(accessToken);

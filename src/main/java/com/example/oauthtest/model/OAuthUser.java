@@ -15,7 +15,9 @@ public class OAuthUser {
     @OneToOne
     private User user;
 
+    @Column(name = "oAuthType")
     private String oAuthType;
+    @Column(name = "oAuthId")
     private String oAuthId;
 
 
