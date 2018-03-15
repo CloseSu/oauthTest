@@ -8,6 +8,7 @@ import java.util.Optional;
 
 @Service
 public class OAuthServices {
+
     @Autowired
     List<OAuthServiceDeractor> oAuthServiceDeractors;
 

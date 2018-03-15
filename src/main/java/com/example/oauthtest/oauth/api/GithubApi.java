@@ -3,32 +3,35 @@ package com.example.oauthtest.oauth.api;
 import org.scribe.builder.api.DefaultApi20;
 import org.scribe.model.OAuthConfig;
 import org.scribe.utils.OAuthEncoder;
+import org.springframework.beans.factory.annotation.Value;
 
 public class GithubApi extends DefaultApi20 {
 
-    private static final String AUTHORIZE_URL = "https://github.com/login/oauth/authorize?client_id=%s&redirect_uri=%s";
-    private static final String SCOPED_AUTHORIZE_URL = AUTHORIZE_URL + "&scope=%s";
-    private static final String ACCESS_TOKEN_URL = "https://github.com/login/oauth/access_token?";
 
-//    private final String githubState = "";
-
-//    public GithubApi(String state){
-//	this.githubState = state;
-//    }
+    @Value("${oAuth.github.userAuthorizationUri}")
+    private String userAuthorizationUri;
+    @Value("${oAuth.github.accessTokenUri}")
+    private String accessTokenUri;
 
     @Override
     public String getAuthorizationUrl(OAuthConfig config) {
+        final String authorise_url = userAuthorizationUri + "client_id=%s&redirect_uri=%s";
 	if (config.hasScope()){
-	    return String.format(SCOPED_AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()),
-		    OAuthEncoder.encode(config.getScope()));
+	    final String scope_authorise_url = authorise_url + "&scope=%s";
+	    return String.format(scope_authorise_url,
+				 config.getApiKey(),
+				 OAuthEncoder.encode(config.getCallback()),
+				 OAuthEncoder.encode(config.getScope()));
 	}
 	else{
-	    return String.format(AUTHORIZE_URL, config.getApiKey(), OAuthEncoder.encode(config.getCallback()));
+	    return String.format(authorise_url,
+				 config.getApiKey(),
+				 OAuthEncoder.encode(config.getCallback()));
 	}
     }
 
     @Override
     public String getAccessTokenEndpoint() {
-	return String.format(ACCESS_TOKEN_URL);
+	return String.format(accessTokenUri);
     }
 }

@@ -9,14 +9,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class OAuthConfig {
+public class GithubOAuthConfig {
 
-    private static final String CALLBACK_URL = "%s/oauth/%s/callback";
+    private final String CALLBACK_URL = "%s/oauth/%s/callback";
 
-//    @Value("${oAuth.github.state}") String state;
-    @Value("${oAuth.github.clientId}") String githubClientId;
-    @Value("${oAuth.github.clientSecret}") String githubClientSecret;
-    @Value("${demo.host}") String host;
+    @Value("${oAuth.github.clientId}")
+    private String githubClientId;
+    @Value("${oAuth.github.clientSecret}")
+    private String githubClientSecret;
+    @Value("${demo.host}")
+    private String host;
 
     @Bean
     public GithubApi githubApi(){
