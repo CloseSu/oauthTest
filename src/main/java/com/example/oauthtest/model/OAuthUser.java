@@ -1,7 +1,10 @@
 package com.example.oauthtest.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 
+@Data
 @Entity
 public class OAuthUser {
 
@@ -14,22 +17,6 @@ public class OAuthUser {
 
     private String oAuthType;
     private String oAuthId;
-    public String getoAuthType() {
-	return oAuthType;
-    }
-    public void setoAuthType(String oAuthType) {
-	this.oAuthType = oAuthType;
-    }
-    public String getoAuthId() {
-	return oAuthId;
-    }
-    public void setoAuthId(String oAuthId) {
-	this.oAuthId = oAuthId;
-    }
-    public User getUser() {
-	return user;
-    }
-    public void setUser(User user) {
-	this.user = user;
-    }
+
+
 }

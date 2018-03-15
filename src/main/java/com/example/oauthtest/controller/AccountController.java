@@ -8,8 +8,6 @@ import com.example.oauthtest.repository.OauthUserRepository;
 import com.example.oauthtest.repository.UserRepository;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class AccountController {
-
-    public static final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @Autowired
     OAuthServices oAuthServices;
@@ -42,8 +38,8 @@ public class AccountController {
 	OAuthServiceDeractor oAuthService = oAuthServices.getOAuthService(type);
 	Token accessToken = oAuthService.getAccessToken(null, new Verifier(code));
 	OAuthUser oAuthInfo = oAuthService.getOAuthUser(accessToken);
-	OAuthUser oAuthUser = oauthUserRepository.findByOAuthTypeAndOAuthId(oAuthInfo.getoAuthType(),
-		oAuthInfo.getoAuthId());
+	OAuthUser oAuthUser = oauthUserRepository.findByOAuthTypeAndOAuthId(oAuthInfo.getOAuthType(),
+		oAuthInfo.getOAuthId());
 	if(oAuthUser == null){
 	    model.addAttribute("oAuthInfo", oAuthInfo);
 	    return "register";
@@ -58,8 +54,8 @@ public class AccountController {
 			   @RequestParam(value = "oAuthId", required = true, defaultValue = "") String oAuthId,
 			   HttpServletRequest request){
 	OAuthUser oAuthInfo = new OAuthUser();
-	oAuthInfo.setoAuthId(oAuthId);
-	oAuthInfo.setoAuthType(oAuthType);
+	oAuthInfo.setOAuthId(oAuthId);
+	oAuthInfo.setOAuthType(oAuthType);
 	if(userRepository.findByUsername(user.getUsername()) != null){
 	    model.addAttribute("errorMessage", "用户名已存在");
 	    model.addAttribute("oAuthInfo", oAuthInfo);
