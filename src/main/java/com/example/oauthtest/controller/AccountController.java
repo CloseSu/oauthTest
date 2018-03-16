@@ -22,14 +22,12 @@ public class AccountController {
     @Autowired
     private UserServiceI userService;
 
-    //prepare all login data
     @RequestMapping(value = {"", "/login"}, method= RequestMethod.GET)
     public String showLogin(Model model){
 	model.addAttribute("oAuthServices", oAuthServices.getAllOAuthServices());
 	return "index";
     }
 
-    //call back from authorization server
     @RequestMapping(value = "/oauth/{type}/callback", method=RequestMethod.GET)
     public String clallback(@RequestParam(value = "code", required = true) String code,
 			    @PathVariable(value = "type") String type,
