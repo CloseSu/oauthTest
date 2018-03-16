@@ -6,4 +6,5 @@ import com.example.oauthtest.model.User;
 public interface UserServiceI {
     void saveData(OauthTypeData oauthTypeData);
     String save(User user);
+    String logIn(User user);
 }

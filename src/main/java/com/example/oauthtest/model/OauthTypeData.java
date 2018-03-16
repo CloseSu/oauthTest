@@ -21,4 +21,7 @@ public class OauthTypeData {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "userId")
+    private Integer userId;
+
 }

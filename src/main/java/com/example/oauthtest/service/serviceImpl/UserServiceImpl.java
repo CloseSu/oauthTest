@@ -31,8 +31,16 @@ public class UserServiceImpl implements UserServiceI{
 	    newUser.setTypeDataList(oauthTypeDataList);
 	    newUser.setUsername(oauthTypeData.getUsername());
 	    userRepository.save(newUser);
-	}else {
-	    oauthTypeDataRepository.save(oauthTypeData);
+	} else {
+	    OauthTypeData oauthTypeDataFromDb = oauthTypeDataRepository.findByOAuthType(oauthTypeData.getOAuthType());
+	    oauthTypeData.setUserId(userFromDb.getUserId());
+	    if (oauthTypeDataFromDb == null) {
+		oauthTypeDataRepository.save(oauthTypeData);
+	    } else {
+		oauthTypeData.setId(oauthTypeDataFromDb.getId());
+		oauthTypeDataRepository.save(oauthTypeData);
+	    }
+
 	}
     }
 
@@ -45,5 +53,14 @@ public class UserServiceImpl implements UserServiceI{
 	}else {
 	    return "You have already registered !";
 	}
+    }
+
+    @Override
+    public String logIn(User user) {
+	User userFromDb = userRepository.findByUsername(user.getUsername());
+	if (userFromDb == null){
+	    return "Please register !";
+	}
+	return "Log in with website";
     }
 }

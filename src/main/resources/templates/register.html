@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"></meta>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.css" />
+    <link rel="stylesheet" type="text/css" href="css/docs.css" />
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-social.css" />
+    <title>Insert title here</title>
+</head>
+<body>
+    <br></br>
+    <br></br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5" >
+                <form action="/registerData" method="POST" modelAttribute="User">
+                    <div class="form-group">
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Enter username"></input>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password"></input>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email"></input>
+                        </div>
+
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

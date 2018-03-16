@@ -4,8 +4,6 @@ import com.example.oauthtest.model.OauthTypeData;
 import com.example.oauthtest.model.User;
 import com.example.oauthtest.oauth.service.OAuthServiceDeractor;
 import com.example.oauthtest.oauth.service.OAuthServices;
-import com.example.oauthtest.repository.OauthTypeDataRepository;
-import com.example.oauthtest.repository.UserRepository;
 import com.example.oauthtest.service.UserServiceI;
 import org.scribe.model.Token;
 import org.scribe.model.Verifier;
@@ -15,18 +13,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class AccountController {
 
     @Autowired
     private OAuthServices oAuthServices;
-    @Autowired
-    private OauthTypeDataRepository oauthUserRepository;
-    @Autowired
-    private UserRepository userRepository;
     @Autowired
     private UserServiceI userService;
 
@@ -50,9 +42,21 @@ public class AccountController {
 	return "redirect:/success";
     }
 
-    @RequestMapping(value = "/register", method=RequestMethod.POST)
+    @RequestMapping(value = "/register", method=RequestMethod.GET)
     public String register(User user, HttpServletRequest request){
+	return "register";
+    }
+
+    @RequestMapping(value = "/registerData", method=RequestMethod.POST)
+    public String registerData(@ModelAttribute User user, HttpServletRequest request){
 	String msg = userService.save(user);
+	request.getSession().setAttribute("msg", msg);
+	return "redirect:/success";
+    }
+
+    @RequestMapping(value = "/loginWithData", method=RequestMethod.POST)
+    public Object loginWithData(@ModelAttribute User user, HttpServletRequest request){
+        String msg = userService.logIn(user);
 	request.getSession().setAttribute("msg", msg);
 	return "redirect:/success";
     }
