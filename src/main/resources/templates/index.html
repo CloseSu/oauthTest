@@ -21,7 +21,7 @@
                        th:classappend="${'btn-' + oAuthService.oAuthType}" >
                         <span class="fa "
                               th:classappend="${'fa-' + oAuthService.oAuthType}">
-                        </span> Sign in with GitHub
+                        </span> <span th:text="${'Sign in with ' +oAuthService.oAuthType }" th:remove="tag"></span>
                     </a>
                 </div>
             </div>
