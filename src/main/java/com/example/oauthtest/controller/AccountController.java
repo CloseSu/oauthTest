@@ -72,11 +72,6 @@ public class AccountController {
 	return "redirect:/success";
     }
 
-
-
-
-
-
     @RequestMapping(value = "/success", method=RequestMethod.GET)
     @ResponseBody
     public Object success(HttpServletRequest request){
