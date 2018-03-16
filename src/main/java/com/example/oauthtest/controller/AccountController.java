@@ -41,7 +41,7 @@ public class AccountController {
     }
 
     @RequestMapping(value = "/register", method=RequestMethod.GET)
-    public String register(User user, HttpServletRequest request){
+    public String register(){
 	return "register";
     }
 
