@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class AccountController {
@@ -59,9 +60,28 @@ public class AccountController {
 	return "redirect:/success";
     }
 
+    @RequestMapping(value = "/findTypeList", method=RequestMethod.POST)
+    public Object findTypeList(@ModelAttribute User user, HttpServletRequest request){
+	List<OauthTypeData> typeList = userService.findTypeList(user);
+
+	if (typeList != null && typeList.size() > 0) {
+	    request.getSession().setAttribute("msg", typeList);
+	} else {
+	    request.getSession().setAttribute("msg", "No data in the website!");
+	}
+	return "redirect:/success";
+    }
+
+
+
+
+
+
     @RequestMapping(value = "/success", method=RequestMethod.GET)
     @ResponseBody
     public Object success(HttpServletRequest request){
 	return request.getSession().getAttribute("msg");
     }
+
+
 }

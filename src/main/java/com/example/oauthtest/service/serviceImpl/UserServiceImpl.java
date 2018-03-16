@@ -63,4 +63,10 @@ public class UserServiceImpl implements UserServiceI{
 	}
 	return "Log in with website";
     }
+
+    @Override
+    public List<OauthTypeData> findTypeList(User user) {
+	User userFromDb = userRepository.findByUsername(user.getUsername());
+	return userFromDb.getTypeDataList();
+    }
 }
