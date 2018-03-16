@@ -1,16 +1,20 @@
 package com.example.oauthtest.model;
 
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Data
 @Entity
 public class OauthTypeData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(generator="system-uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @Column(name = "id", unique = true)
+    private String id;
 
     @Column(name = "oAuthType")
     private String oAuthType;
@@ -22,6 +26,6 @@ public class OauthTypeData {
     private String username;
 
     @Column(name = "userId")
-    private Integer userId;
+    private String userId;
 
 }
